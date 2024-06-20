@@ -41,24 +41,24 @@ const getOne = async (req,res)=>{
     }
 }
 
-//monthly usage
-// const estimateUsage = async(req,res)=>{
-//     try {
-//         const {meterNo, monthlyUsage}=req.body
-//         const owner = await nepaModel.findOne({meterNo})
-//         if(!owner){
-//             res.status(400).json({message:"user not detected"})
-//         }
-//         let remainingUnit = owner.conversion-monthlyUsage
-//         const monthlyReading = await nepaModel.findOneAndUpdate({meterNo},{conversion:remainingUnit},{new:true})
-//         res.status(200).json({message:`user updated successfully`, monthlyReading})
+monthly usage
+const estimateUsage = async(req,res)=>{
+    try {
+        const {meterNo, monthlyUsage}=req.body
+        const owner = await nepaModel.findOne({meterNo})
+        if(!owner){
+            res.status(400).json({message:"user not detected"})
+        }
+        let remainingUnit = owner.conversion-monthlyUsage
+        const monthlyReading = await nepaModel.findOneAndUpdate({meterNo},{conversion:remainingUnit},{new:true})
+        res.status(200).json({message:`user updated successfully`, monthlyReading})
 
      
-//     } catch (error) {
-//         res.status(500).json(error.message)
+    } catch (error) {
+        res.status(500).json(error.message)
          
-//     }
-// }
+    }
+}
 
 //payment
 const paybills= async (req,res)=>{
